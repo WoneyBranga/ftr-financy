@@ -1,75 +1,154 @@
-# Desafio Fase 3 - Financy
+# 💜 Financy
 
-## Introdução
+Aplicação FullStack de gerenciamento de finanças pessoais, desenvolvida como desafio da Fase 3 da Pós-Graduação da Rocketseat. O projeto permite o cadastro de usuários, criação de categorias e o controle de transações (entradas e saídas).
 
-Faaaaaaala, dev! Parabéns por chegar até aqui! 💜
-Agora é hora de reforçar os conceitos que você aprendeu até aqui colocando a mão na massa!
+## 🧱 Stack
 
-Este é o momento de transformar conhecimento em ação, desenvolvendo um projeto que vai consolidar suas habilidades e te preparar um pouco mais para os desafios reais!
+- **Backend:** Node.js, TypeScript, Apollo Server, TypeGraphQL, Prisma ORM, SQLite, JWT, bcryptjs
+- **Frontend:** React 19, Vite, TypeScript, TailwindCSS, shadcn/ui, Apollo Client, React Router, Zustand
 
-Vamos lá? Bora por a mão na massa 🚀
+## 📁 Estrutura do repositório
 
----
+```
+ftr-financy/
+├── backend/    # API GraphQL (Apollo Server + Prisma)
+└── frontend/   # SPA React + Vite
+```
 
-## Descrição do desafio
+## ✅ Pré-requisitos
 
-Vamos desenvolver uma aplicação FullStack de gerenciamento de finanças: o Financy! 
+Antes de começar, certifique-se de ter instalado na sua máquina:
 
-O objetivo é criar uma aplicação que permita a organização de finanças, com gestão de transações e categorias.
+- [Node.js](https://nodejs.org/) **v20** ou superior
+- [npm](https://www.npmjs.com/) (já vem junto com o Node)
+- [Git](https://git-scm.com/)
 
-<aside>
-💜 Acesse o [**link**](https://www.figma.com/community/file/1580994817007013257) do Figma aqui.
+## 🚀 Como rodar o projeto
 
-</aside>
+### 1. Clonar o repositório
 
-Para facilitar a leitura, a documentação com a descrição mais detalhada de cada área estão separadas nas subpáginas abaixo:
-
-### Back-end
-
-[Descrição e Requisitos](https://www.notion.so/Descri-o-e-Requisitos-2ca395da5770814bb803df3e398cc75a?pvs=21)
-
-### Front-end
-
-[Descrição e Requisitos](https://www.notion.so/Descri-o-e-Requisitos-2ca395da5770817eb404e13cb156c0ee?pvs=21)
-
----
-
-## Entrega
-
-Esse desafio deve ser entregue na nossa plataforma.
-Para o envio, é necessário criar um repositório no GitHub e enviar o link  do seu repositório na nossa plataforma com a sua resolução!
-
-Porém, é **importante seguir alguns padrões** para que possamos **corrigir** corretamente o seu projeto:
-
-- O repositório deve estar público;
-- O repositório deve conter a resolução do desafio;
-- O repositório deve ter duas subpastas
-    - `backend` vai conter a resolução completa do desafio Back-end;
-    - `frontend` vai conter a resolução completa do desafio Front-end.
-- O repositório deve conter o código referente as regras e funcionalidades obrigatórias. Caso queira se desafiar com funcionalidades extras, crie o código com essas alterações em uma nova `branch`, preservando o seu código original do desafio.
-
-Após concluir o desafio, se você se sentir confortável, o que acha de postar no LinkedIn 
-contando como foi a sua experiência compartilhando o seu projeto e o seu aprendizado?
-É uma excelente forma de demonstrar seus conhecimentos e atrair novas oportunidades! 👀
-
-E pode marcar a gente, viu? Vai ser incrível acompanhar toda a sua evolução! 💜
+```bash
+git clone <url-do-repositorio>
+cd ftr-financy
+```
 
 ---
 
-## Dicas
+### 2. Backend
 
-Esse projeto tem como forte inspiração as funcionalidades e tecnologias vistas no projeto MindShare. Então caso tenha dúvidas, vale a pena revisitar as aulas dos módulos **Back-end GraphQL** e **Front-end GraphQL** ou o código do projeto ([**frontend**](https://github.com/rocketseat-education/ftr-pos-360-mindshare/tree/main/frontend) e [**backend**](https://github.com/rocketseat-education/ftr-pos-360-mindshare/tree/main/backend)) pois podem te ajudar bastante na resolução desse desafio.
+O backend expõe uma API GraphQL em `http://localhost:4000/graphql` e usa SQLite como banco de dados (arquivo local `prisma/dev.db`).
+
+#### 2.1 Instalar dependências
+
+```bash
+cd backend
+npm install
+```
+
+#### 2.2 Configurar variáveis de ambiente
+
+Copie o arquivo de exemplo e ajuste os valores conforme necessário:
+
+```bash
+cp .env.example .env
+```
+
+Conteúdo do `.env`:
+
+```env
+DATABASE_URL="file:./dev.db"
+JWT_SECRET="troque-em-producao"
+FRONTEND_URL="http://localhost:5173"
+```
+
+#### 2.3 Rodar as migrations e gerar o Prisma Client
+
+```bash
+npm run migrate
+```
+
+Esse comando cria o banco SQLite, aplica as migrations e gera o Prisma Client.
+
+#### 2.4 (Opcional) Popular o banco com dados de exemplo
+
+```bash
+npm run seed
+```
+
+#### 2.5 Iniciar o servidor em modo de desenvolvimento
+
+```bash
+npm run dev
+```
+
+A API estará disponível em: **http://localhost:4000/graphql**
+
+> 💡 Outros scripts disponíveis:
+>
+> - `npm run build` — compila o TypeScript para `dist/`
+> - `npm run start` — executa a build de produção
+> - `npm run generate` — regenera o Prisma Client
 
 ---
 
-## Considerações finais
+### 3. Frontend
 
-Lembre-se que o intuito de um desafio é te impulsionar, por isso, dependendo do desafio, pode ser que você precise ir além do que foi discutido em sala de aula. 
-Mas isso não é algo ruim: ter autonomia para buscar informações extras é uma habilidade muito valiosa e vai ser ótimo pra você treinar ela aqui com a gente!
+O frontend consome a API GraphQL do backend e roda em `http://localhost:5173`.
 
-E lembre-se: **tenha calma**! Enfrentar desafios faz parte do seu processo de aprendizado! 
+> ⚠️ Certifique-se de que o backend está rodando **antes** de iniciar o frontend.
 
-Se precisar de alguma orientação ou suporte, estamos aqui com você!
-Bons estudos e boa prática! 💜
+#### 3.1 Instalar dependências
+
+Em um novo terminal, a partir da raiz do projeto:
+
+```bash
+cd frontend
+npm install
+```
+
+#### 3.2 Configurar variáveis de ambiente
+
+```bash
+cp .env.example .env
+```
+
+Conteúdo do `.env`:
+
+```env
+VITE_BACKEND_URL=http://localhost:4000/graphql
+```
+
+#### 3.3 Iniciar o servidor de desenvolvimento
+
+```bash
+npm run dev
+```
+
+A aplicação estará disponível em: **http://localhost:5173**
+
+> 💡 Outros scripts disponíveis:
+>
+> - `npm run build` — gera a build de produção
+> - `npm run preview` — serve a build localmente
+> - `npm run lint` — roda o ESLint
+
+---
+
+## 🧪 Fluxo rápido para testar
+
+1. Rode o backend (`cd backend && npm run dev`).
+2. Rode o frontend (`cd frontend && npm run dev`).
+3. Acesse `http://localhost:5173`.
+4. Crie uma conta em **Signup**, faça login e comece a cadastrar categorias e transações. 🎉
+
+---
+
+## 📚 Documentação adicional
+
+- [`backend/REQUISITOS.md`](./backend/REQUISITOS.md) — requisitos do backend
+- [`backend/ARCHITECTURE.md`](./backend/ARCHITECTURE.md) — arquitetura do backend
+- [`frontend/REQUISITOS.md`](./frontend/REQUISITOS.md) — requisitos do frontend
+- [`frontend/ARCHITECTURE.md`](./frontend/ARCHITECTURE.md) — arquitetura do frontend
+- [`backend/schema.graphql`](./backend/schema.graphql) — schema GraphQL gerado
 
 ---
